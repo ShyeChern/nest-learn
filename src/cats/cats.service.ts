@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
-import { Sequelize } from 'sequelize-typescript';
 import { Cat } from './cats.model';
 import { CreateCatDto } from './dto/create-cat.dto';
 
