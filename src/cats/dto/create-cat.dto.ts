@@ -20,8 +20,12 @@ export const createCatSchema = Joi.object({
   name: Joi.string().required(),
   age: Joi.number()
     .required()
-    .error(() => {
-      return new Error('Some Custom Message');
+    .error(new Error('Some Custom Message'))
+    .external((value) => {
+      if (Math.random() < 0.5) {
+        throw new Error('Random Error');
+      }
+      return value;
     }),
   breed: Joi.string().required(),
 });

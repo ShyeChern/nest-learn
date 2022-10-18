@@ -123,7 +123,7 @@ export class CatsController {
     description: 'A parameter q. Optional',
     required: false,
   })
-  @UsePipes(new JoiValidationPipe(createCatSchema))
+  @UsePipes(new JoiValidationPipe(createCatSchema, 2))
   create(@Body() createCatDto: CreateCatDto) {
     this.catsService.create(createCatDto);
   }
