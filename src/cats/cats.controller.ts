@@ -20,11 +20,7 @@ import {
   Version,
 } from '@nestjs/common';
 import { Request, Response } from 'express';
-import {
-  CreateCatDto,
-  createCatSchema,
-  JoiValidationPipe,
-} from './dto/create-cat.dto';
+import { CreateCatDto, createCatSchema } from './dto/create-cat.dto';
 import { CatsService } from './cats.service';
 import { UsersService } from 'src/users/users.service';
 import { Role, Roles } from 'src/common/decorators/roles.decorator';
@@ -37,6 +33,7 @@ import { join } from 'path';
 import { Public } from 'src/common/decorators/public.decorator';
 import { SkipThrottle, Throttle } from '@nestjs/throttler';
 import { ApiHeader, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { JoiValidationPipe } from 'src/common/pipe/joiValidation.pipe';
 
 // handle specific host
 // @Controller({ host: 'admin.example.com' })

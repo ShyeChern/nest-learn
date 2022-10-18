@@ -1,9 +1,3 @@
-import {
-  PipeTransform,
-  Injectable,
-  ArgumentMetadata,
-  BadRequestException,
-} from '@nestjs/common';
 import { ApiProperty } from '@nestjs/swagger';
 import * as Joi from 'joi';
 
@@ -24,19 +18,10 @@ export class CreateCatDto {
 
 export const createCatSchema = Joi.object({
   name: Joi.string().required(),
-  age: Joi.number().required(),
+  age: Joi.number()
+    .required()
+    .error(() => {
+      return new Error('Some Custom Message');
+    }),
   breed: Joi.string().required(),
 });
-
-@Injectable()
-export class JoiValidationPipe implements PipeTransform {
-  constructor(private schema: Joi.ObjectSchema) {}
-
-  transform(value: any, metadata: ArgumentMetadata) {
-    const { error } = this.schema.validate(value);
-    if (error) {
-      throw new BadRequestException('Validation failed');
-    }
-    return value;
-  }
-}
